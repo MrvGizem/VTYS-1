@@ -1,0 +1,13 @@
+CREATE TABLE kategori (
+    kategori_id VARCHAR(10) PRIMARY KEY,
+    kategori_adi VARCHAR(50) NOT NULL
+);
+
+INSERT INTO kategori
+(kategori_id, kategori_adi)
+VALUES
+('K01', 'Sehir'),
+('K02', 'Performans'),
+('K03', 'Ticari');
+
+SELECT * FROM kategori;
