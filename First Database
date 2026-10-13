@@ -1,0 +1,20 @@
+-- VOLTRIDE_DB / 3. HAFTA - ÖĞRENCİLERE ÖNCEDEN GÖNDERİLECEK BAŞLANGIÇ
+-- PostgreSQL'de voltride_db veritabanını seçip Query Tool üzerinde çalıştırın.
+-- Var olan urun tablosunu SİLMEZ: kayıtları korumak için hata vererek durur.
+
+CREATE TABLE urun (
+    urun_id VARCHAR(10) PRIMARY KEY,
+    urun_adi VARCHAR(50) NOT NULL,
+    kategori VARCHAR(50) NOT NULL,
+    fiyat NUMERIC(10,2) NOT NULL,
+    stok INTEGER NOT NULL
+);
+
+INSERT INTO urun (urun_id, urun_adi, kategori, fiyat, stok) VALUES
+('U101', 'VTR City', 'Sehir', 25000.00, 12),
+('U102', 'VTR City Plus', 'Sehir', 28500.00, 8),
+('U103', 'VTR Sport', 'Performans', 34000.00, 6),
+('U104', 'VTR Pro', 'Performans', 42000.00, 4),
+('U105', 'VTR Cargo', 'Ticari', 39000.00, 3);
+
+SELECT * FROM urun ORDER BY urun_id;
