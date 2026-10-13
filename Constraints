@@ -1,0 +1,36 @@
+-- Yeni sütun ekleme
+ALTER TABLE urun
+ADD COLUMN aktif_mi BOOLEAN DEFAULT TRUE;
+
+ALTER TABLE urun
+ALTER COLUMN aktif_mi SET NOT NULL;
+
+SELECT urun_id, urun_adi, aktif_mi
+FROM urun;
+
+-- Negatif fiyat sorunu CHECK
+ALTER TABLE urun
+ADD CONSTRAINT ck_urun_fiyat
+CHECK (fiyat > 0);
+--Kısıt çalışıyormu deneyelim
+INSERT INTO urun (urun_id, urun_adi, kategori, fiyat, stok)
+VALUES ('U106', 'Test Scooter', 'Sehir', -500, 4);
+
+--Stok miktarı için CHECK kısıtı ekleme
+ALTER TABLE urun
+ADD CONSTRAINT ck_urun_stok
+CHECK (stok >= 0);
+
+--Barkod sütunu oluşturma ve UNIQUE kısıtı
+ALTER TABLE urun
+ADD COLUMN barkod VARCHAR(20);
+
+UPDATE urun
+SET barkod = 'BRK-' || urun_id;
+
+ALTER TABLE urun
+ALTER COLUMN barkod SET NOT NULL;
+
+ALTER TABLE urun
+ADD CONSTRAINT uq_urun_barkod
+UNIQUE (barkod);
